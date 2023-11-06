@@ -343,12 +343,15 @@ IC 1C1 1S  2FE  2NB   0.0000  0.0000    0.0000  0.0000  0.0000
 !===============================================================================
 ! NEW APGAMIZ - correct oxidation state of [HECR] with Fe(II) and [HEMC] Fe(III) 
 !===============================================================================
+! PRES HEMC 1.0 ! Patch for heme c ! RESP-B3LYP(D3) - def2-SVP - APGAMIZ 2020 - Fe+3
+! PRES HECR 0.0 ! Patch for heme c ! RESP-B3LYP(D3) - def2-SVP - APGAMIZ 2020 - Fe+2
 ! patch for hem-cytochrome C
 ! 1-CYS 2-CYS 3-HIS 4-MET 5-HEM
-! PATCH should be applied in existing HEME that has already 2 propionic groups (charge -2)
-! This patch modifies only the heme ring without propionic groups, that's the reason of 
-! the charge 1.0 - in reality- when the two propionic groups are added it should 
-! add up to 
+! PATCH should be applied in existing HEME that has already 2 propionic groups 
+! (charge -2)
+! This patch modifies only the heme ring without propionic groups, 
+! that's the reason of the charge 1.0 - in reality- when the two propionic 
+! groups are added it should add up to 
 ! -1 for Fe+3  
 ! -2 for Fe+2 
 !
@@ -614,9 +617,258 @@ IC 3CD2 3NE2 5FE  5NB   0.0000  0.0000    0.0000  0.0000  0.0000
 IC 3CD2 3NE2 5FE  5NB   0.0000  0.0000    0.0000  0.0000  0.0000
 IC 3CE1 3NE2 5FE  5NA   0.0000  0.0000    0.0000  0.0000  0.0000
 
-!========================================================================================
-!                                    Heme - patches
-!========================================================================================
+
+!===============================================================================
+!Patches for HEM-B for cytochrome b with [HEMO] Fe(II) and [HEMR] Fe(III) 
+!===============================================================================
+! PRES HEMO 1.0 ! Patch for heme b ! RESP-B3LYP(D3)/def2-SVP,Fe def2-TZVP - APGAMIZ 2020 - Fe+3
+! PRES HEMR 0.0 ! Patch for heme b ! RESP-B3LYP(D3)/def2-SVP,Fe def2-TZVP - APGAMIZ 2020 - Fe+2
+! patch for hem-cytochrome B
+
+!==================================================================================
+! HEM B/ FeII/FeIII 
+!***********************************************************************************
+!
+!                      HEME_RED(II)  - without propionic groups - for titration
+!
+!***********************************************************************************
+PRES HEMR         0.00 ! 6-liganded planar heme
+GROUP
+ATOM 1FE   FE      0.250!       O2A   O1A             O2D  O1D
+ATOM 1NA   NPH1   -0.119!         \\ //                 \\ //
+ATOM 1NB   NPH2   -0.119!          CGA                   CGD
+ATOM 1NC   NPH3   -0.119!           |                     |
+ATOM 1ND   NPH4   -0.119!    HBA1--CBA--HBA2  HA   HBD1--CBD--HBD2
+ATOM 1C1A  CPA    -0.045!           |          |          |
+ATOM 1C2A  CPB     0.038!    HAA1--CAA-HAA2  _CHA_ HAD1--CAD--HAD2
+ATOM 1C3A  CPB     0.020!           |       /     \       |
+ATOM 1C4A  CPA    -0.013!          C2A---C1A       C4D---C3D
+ATOM 1C1B  CPA    -0.045!           |     |         |     |
+ATOM 1C2B  CPB     0.038!HMA1\      |     |         |     |      /HMD1
+ATOM 1C3B  CPB     0.020!HMA2-CMA--C3A    NA       ND    C2D--CMD-HMD2
+ATOM 1C4B  CPA    -0.013!HMA3/       \   / \       / \   /       \HMD3
+ATOM 1C1C  CPA    -0.045!             C4A   \     /   C1D
+ATOM 1C2C  CPB     0.038!            /       \   /       \
+ATOM 1C3C  CPB     0.021!      HB--CHB        FE         CHD--HD
+ATOM 1C4C  CPA    -0.013!            \       /   \       /
+ATOM 1C1D  CPA    -0.045!             C1B   /     \   C4C        HAC
+ATOM 1C2D  CPB     0.038!HMB1\       /   \ /       \ /   \       /
+ATOM 1C3D  CPB     0.021!HMB2-CMB--C2B    NB       NC    C3C--CAC
+ATOM 1C4D  CPA    -0.013!HMB3/      |     |         |     |     \\  /HBC1
+GROUP                  !           |     |         |     |      CBC
+ATOM 1CHA  CPM    -0.134!          C3B---C4B       C1C---C2C        \HBC2
+ATOM 1HA   HA      0.133!           |       \_CHC_/       |
+GROUP                  !          CAB         |         CMC--HMC3
+ATOM 1CHB  CPM    -0.134!         //  \        HC       /  |
+ATOM 1HB   HA      0.133!        CBB  HAB           HMC1  HMC2
+GROUP                  !       /   \
+ATOM 1CHC  CPM    -0.134!    HBB1  HBB2
+ATOM 1HC   HA      0.133!
+GROUP
+ATOM 1CHD  CPM    -0.134
+ATOM 1HD   HA      0.133
+GROUP
+ATOM 1CMA  CT3    -0.159
+ATOM 1HMA1 HA3     0.054
+ATOM 1HMA2 HA3     0.054
+ATOM 1HMA3 HA3     0.054
+GROUP
+ATOM 1CMB  CT3    -0.159
+ATOM 1HMB1 HA3     0.054
+ATOM 1HMB2 HA3     0.054
+ATOM 1HMB3 HA3     0.054
+GROUP
+ATOM 1CAB  CE1    -0.058
+ATOM 1HAB  HE1     0.119
+GROUP
+ATOM 1CBB  CE2    -0.436
+ATOM 1HBB1 HE2     0.167
+ATOM 1HBB2 HE2     0.167
+GROUP
+ATOM 1CMC  CT3    -0.159
+ATOM 1HMC1 HA3     0.054
+ATOM 1HMC2 HA3     0.054
+ATOM 1HMC3 HA3     0.054
+GROUP
+ATOM 1CAC  CE1    -0.058
+ATOM 1HAC  HE1     0.119
+GROUP
+ATOM 1CBC  CE2    -0.436
+ATOM 1HBC1 HE2     0.167
+ATOM 1HBC2 HE2     0.167
+GROUP
+ATOM 1CMD  CT3    -0.159
+ATOM 1HMD1 HA3     0.054
+ATOM 1HMD2 HA3     0.054
+ATOM 1HMD3 HA3     0.054
+GROUP                    !                
+ATOM 2CB   CT2    -0.09  !        HD1    HE1
+ATOM 2HB1  HA2     0.09  !         |     /
+ATOM 2HB2  HA2     0.09  ! HB1    ND1--CE1
+ATOM 2ND1  NR1    -0.073 ! |     /      ||
+ATOM 2HD1  H       0.369 ! CB--CG       ||
+ATOM 2CG   CPH1    0.079 ! |     \\     ||
+GROUP                    ! HB2    CD2--NE2
+ATOM 2CE1  CPH2    0.137 !         |
+ATOM 2HE1  HR1     0.081 !        HD2
+ATOM 2NE2  NR2    -0.455
+ATOM 2CD2  CPH1   -0.251
+ATOM 2HD2  HR3     0.172
+GROUP                    
+ATOM 3CB    CT2    -0.09  
+ATOM 3HB1   HA2     0.09  
+ATOM 3HB2   HA2     0.09  
+ATOM 3ND1   NR1    -0.073 
+ATOM 3HD1   H       0.369
+ATOM 3CG    CPH1    0.079
+GROUP
+ATOM 3CE1   CPH2    0.137
+ATOM 3HE1   HR1     0.081
+ATOM 3NE2   NR2    -0.455
+ATOM 3CD2   CPH1   -0.251
+ATOM 3HD2   HR3     0.172
+
+
+!***********************************************************************************
+!
+!                                                       HEME_OX(III) 
+!APPLY: patch HEMO HEMB 601 B 123  B 226 setup warn
+!***********************************************************************************
+PRES HEMO       +1.00 ! 6-liganded planar heme
+GROUP
+ATOM 1FE   FE      0.480!       O2A   O1A             O2D  O1D
+ATOM 1NA   NPH1   -0.094!         \\ //                 \\ //
+ATOM 1NB   NPH2   -0.094!          CGA                   CGD
+ATOM 1NC   NPH3   -0.094!           |                     |
+ATOM 1ND   NPH4   -0.094!    HBA1--CBA--HBA2  HA   HBD1--CBD--HBD2
+ATOM 1C1A  CPA    -0.038!           |          |          |
+ATOM 1C2A  CPB     0.048!    HAA1--CAA-HAA2  _CHA_ HAD1--CAD--HAD2
+ATOM 1C3A  CPB     0.110!           |       /     \       |
+ATOM 1C4A  CPA    -0.051!          C2A---C1A       C4D---C3D
+ATOM 1C1B  CPA    -0.038!           |     |         |     |
+ATOM 1C2B  CPB     0.048!HMA1\      |     |         |     |      /HMD1
+ATOM 1C3B  CPB     0.110!HMA2-CMA--C3A    NA       ND    C2D--CMD-HMD2
+ATOM 1C4B  CPA    -0.051!HMA3/       \   / \       / \   /       \HMD3
+ATOM 1C1C  CPA    -0.038!             C4A   \     /   C1D
+ATOM 1C2C  CPB     0.048!            /       \   /       \
+ATOM 1C3C  CPB     0.110!      HB--CHB        FE         CHD--HD
+ATOM 1C4C  CPA    -0.051!            \       /   \       /
+ATOM 1C1D  CPA    -0.038!             C1B   /     \   C4C        HAC
+ATOM 1C2D  CPB     0.048!HMB1\       /   \ /       \ /   \       /
+ATOM 1C3D  CPB     0.110!HMB2-CMB--C2B    NB       NC    C3C--CAC
+ATOM 1C4D  CPA    -0.051!HMB3/      |     |         |     |     \\  /HBC1
+GROUP                  !           |     |         |     |      CBC
+ATOM 1CHA  CPM    -0.118!          C3B---C4B       C1C---C2C        \HBC2
+ATOM 1HA   HA      0.151!           |       \_CHC_/       |
+GROUP                  !          CAB         |         CMC--HMC3
+ATOM 1CHB  CPM    -0.118!         //  \        HC       /  |
+ATOM 1HB   HA      0.151!        CBB  HAB           HMC1  HMC2
+GROUP                  !       /   \
+ATOM 1CHC  CPM    -0.118!    HBB1  HBB2
+ATOM 1HC   HA      0.151!
+GROUP
+ATOM 1CHD  CPM    -0.118
+ATOM 1HD   HA      0.151
+GROUP
+ATOM 1CMA  CT3    -0.215
+ATOM 1HMA1 HA3     0.075
+ATOM 1HMA2 HA3     0.075
+ATOM 1HMA3 HA3     0.075
+GROUP
+ATOM 1CAA  CT2    -0.351
+ATOM 1HAA1 HA2     0.175
+ATOM 1HAA2 HA2     0.175
+GROUP
+ATOM 1CMB  CT3    -0.215
+ATOM 1HMB1 HA3     0.075
+ATOM 1HMB2 HA3     0.075
+ATOM 1HMB3 HA3     0.075
+GROUP
+ATOM 1CAB  CE1    -0.166
+ATOM 1HAB  HE1     0.142
+GROUP
+ATOM 1CBB  CE2    -0.325
+ATOM 1HBB1 HE2     0.169
+ATOM 1HBB2 HE2     0.169
+GROUP
+ATOM 1CMC  CT3    -0.215
+ATOM 1HMC1 HA3     0.075
+ATOM 1HMC2 HA3     0.075
+ATOM 1HMC3 HA3     0.075
+GROUP
+ATOM 1CAC  CE1    -0.166
+ATOM 1HAC  HE1     0.142
+GROUP
+ATOM 1CBC  CE2    -0.325
+ATOM 1HBC1 HE2     0.169
+ATOM 1HBC2 HE2     0.169
+GROUP
+ATOM 1CMD  CT3    -0.215
+ATOM 1HMD1 HA3     0.075
+ATOM 1HMD2 HA3     0.075
+ATOM 1HMD3 HA3     0.075
+GROUP
+ATOM 1CAD  CT2    -0.351
+ATOM 1HAD1 HA2     0.175
+ATOM 1HAD2 HA2     0.175
+GROUP                   
+ATOM 2CB    CT2    -0.09 
+ATOM 2HB1   HA2     0.09 
+ATOM 2HB2   HA2     0.09 
+ATOM 2ND1   NR1    -0.085
+ATOM 2HD1   H       0.378
+ATOM 2CG    CPH1    0.180
+GROUP
+ATOM 2CE1   CPH2    0.183
+ATOM 2HE1   HR1     0.072
+ATOM 2NE2   NR2    -0.448
+ATOM 2CD2   CPH1   -0.358
+ATOM 2HD2   HR3     0.224
+GROUP                    
+ATOM 3CB    CT2    -0.09  
+ATOM 3HB1   HA2     0.09  
+ATOM 3HB2   HA2     0.09  
+ATOM 3ND1   NR1    -0.085 
+ATOM 3HD1   H       0.378
+ATOM 3CG    CPH1    0.180
+GROUP
+ATOM 3CE1   CPH2    0.183
+ATOM 3HE1   HR1     0.072
+ATOM 3NE2   NR2    -0.448
+ATOM 3CD2   CPH1   -0.358
+ATOM 3HD2   HR3     0.224
+
+!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+PRES PHHH         0.00 ! Patch for HEME to 2x His link.
+                       ! Patch residues must be 1-HIS, 2-HEME, 3-HIS
+DELETE ANGLE 2NA 2FE 2NC  2NB 2FE 2ND
+BOND 1NE2 2FE     2FE 3NE2
+ANGLE 1CD2 1NE2 2FE  1CE1 1NE2 2FE  1NE2 2FE 2NA  1NE2 2FE 2NB
+ANGLE 1NE2 2FE  2NC  1NE2 2FE  2ND
+ANGLE 3CD2 3NE2 2FE  3CE1 3NE2 2FE  3NE2 2FE 2NA  3NE2 2FE 2NB
+ANGLE 3NE2 2FE  2NC  3NE2 2FE  2ND
+ANGLE 1NE2 2FE 3NE2
+IC 1CD2 1NE2 2FE  2NA   0.0000  0.0000    0.0000  0.0000  0.0000
+IC 1CD2 1NE2 2FE  2NB   0.0000  0.0000   90.0000  0.0000  0.0000
+IC 1CD2 1NE2 2FE  2NC   0.0000  0.0000   180.0000  0.0000  0.0000
+IC 1CD2 1NE2 2FE  2ND   0.0000  0.0000    270.0000  0.0000  0.0000
+IC 1CE1 1NE2 2FE  2NA   0.0000  0.0000   180.0000  0.0000  0.0000
+
+IC 3CD2 3NE2 2FE  2NA   0.0000  0.0000      0.0000  0.0000  0.0000
+IC 3CD2 3NE2 2FE  2NB   0.0000  0.0000    -90.0000  0.0000  0.0000
+IC 3CD2 3NE2 2FE  2NC   0.0000  0.0000    -180.0000  0.0000  0.0000
+IC 3CD2 3NE2 2FE  2ND   0.0000  0.0000  -270.0000  0.0000  0.0000
+IC 3CE1 3NE2 2FE  2NA   0.0000  0.0000  -180.0000  0.0000  0.0000
+
+IC 1CG  1CD2 1NE2 2FE   0.0000  0.0000  180.0000  0.0000  0.0000
+IC 3CG  3CD2 3NE2 2FE   0.0000  0.0000  180.0000  0.0000  0.0000
+
+
+
+!==================================================================================
+!                 Heme - patches
+!==================================================================================
 
 PRES FIXA        -0.48 ! FIX UP THE HEME BY DELETING UNWANTED AUTOGENERATED ANGLES
                        ! unliganded heme patch
@@ -851,8 +1103,9 @@ S     CE1  HE1  49.0777 106.14 ! HEC-cyt_c ; apgamiz2019 geo B3LYP-D3/TZVP
 S     CE1  CT3  80.7325 106.49 ! HEC-cyt_c ; apgamiz2019 geo B3LYP-D3/TZVP
 CT2   S    CE1 188.1752 103.7  ! HEC-cyt_c ; apgamiz2019 geo B3LYP-D3/TZVP
 S     CE1  CPB  80.7325 106.49 ! HEC-cyt_c ; apgamiz2019 geo B3LYP-D3/TZVP
-FE   S    CT2     120.0000   99.9756 ! B3LYP-SVP  apgamiz     50.0235    97.2947
-S    CE1  CE2      30.000   107.0000 ! FROM OPT_GEOM_B3LYP/def2-TZVP
+FE    S    CT2 120.0000  99.9756 ! B3LYP-SVP  apgamiz     50.0235    97.2947
+S     CE1  CE2  30.000  107.0000 ! FROM OPT_GEOM_B3LYP/def2-TZVP
+NR2   FE   NR2  50.000  180.0000 ! cyt-b
 
 DIHEDRALS
 !
